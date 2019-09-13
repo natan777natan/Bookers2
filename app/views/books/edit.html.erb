@@ -1,0 +1,19 @@
+
+
+<div class="hennsyu">
+	<h2>Editing Book</h2>
+
+
+
+<%= form_for(@book) do |bookedit| %>
+<p>Title</p><%= bookedit.text_field :title, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"Title"%>
+<br>
+<p>Introduction<%= bookedit.text_area :body, autofocus: true, class:"form-control", id:"inputEmail",placeholder:"" %></p><br>
+
+<%= bookedit.submit "Update Book", class:"btn btn-default btn-block" %>
+<% end %>
+
+<p>
+	<%= link_to "show", book_path(@book) %><span> | </span><%= link_to "back", user_path(@user) %>
+</p>
+</div>

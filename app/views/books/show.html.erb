@@ -1,0 +1,79 @@
+<!-- ここからUser info -->
+<div class="container"> <!-- 全体の囲い -->
+<div class="row">
+<div class="col-sm-4">
+    <h2>User info</h2>
+    <div class="example">
+        <%= attachment_image_tag @book.user, :profile_image, :fill, 80, 80, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size:'80x80' %></div>
+    <hr></hr>
+    <h3>name   <%= @book.user.name %></h3>
+    <hr></hr>
+    <h3>Introduction</h3>
+        <p><%= @book.user.introduction %></p><br>
+    <hr></hr>
+    <%= link_to edit_user_path(@book.user), class: "center-block" do %>
+            <button type="button" class="btn btn-default btn-block">
+                <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+            </button>
+    <% end %>
+
+
+
+</br>
+</br>
+</br>
+    <h4>New book</h4>
+    <%= form_for(@newbook) do |f| %>
+
+    <div class="toukou">
+    <p class="toukou-title">Title</p>
+    <div class="toukou-waku"><%= f.text_field :title %></div>
+    <p class="toukou-title">Opinion</p>
+    <div class="toukou-waku"><%= f.text_area :body %></div>
+    </br>
+
+    <%= f.submit 'create book' %>
+    </div>
+    <% end %>
+</div>
+<!-- ここまでUser info。containerとrowの/divとじを付け加えてねん -->
+
+<div class="col-sm-8">
+	<h2>Book detail</h2>
+	<hr></hr>
+
+	<div class="container">
+    <div class="row">
+    	<div class="col-sm-4">
+	      <div class="example">
+		  <%= attachment_image_tag @book.user, :profile_image, :fill, 80, 80, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size:'80x80' %></div>
+	      <h3><%= link_to @book.user.name, user_path(@book.user) %></h3>
+        </div>
+
+        <div class="col-sm-2">
+	      <p class="book_title"><%= @book.title %></p>
+	    </div>
+	    <div class="col-sm-2">
+	      <p class="book_body"><%= @book.body %></p>
+	    </div>
+	    <div class="col-sm-2">
+	      <% if @book.user == current_user %>
+          <p class="book_edit"><%= link_to "Edit", edit_book_path, class: "btn btn-success" %></p>
+          <% else %>
+          <p class="book_edit"></p>
+	      <% end %>
+        </div>
+	    <div class="col-sm-2">
+	      <p class="book_destroy">
+            <% if @book.user == current_user %>
+                <%= link_to "Destroy", book_path(@book), method: :delete, "data-confirm" => "本当に削除しますか？" , class: "btn btn-danger" %>
+            <% end %>
+          </p>
+	    </div>
+	</div>
+    </div>
+
+</div>
+</div>
+</div>
+

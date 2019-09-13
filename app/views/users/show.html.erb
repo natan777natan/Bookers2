@@ -1,0 +1,75 @@
+
+<!-- ここからUser info -->
+<div class="container"> <!-- 全体の囲い -->
+<div class="row">
+<div class="col-sm-4">
+<p class="flash"><%= flash[:user] %></p>
+	<h2>User info</h2>
+	<div class="example">
+        <%= attachment_image_tag @user, :profile_image, :fill, 80, 80, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size:'80x80' %></div>
+	<hr></hr>
+	<h3>name   <%= @user.name %></h3>
+    <hr></hr>
+	<h3>Introduction</h3>
+        <p><%= @user.introduction %></p><br>
+    <hr></hr>
+    <%= link_to edit_user_path(@user), class: "center-block" do %>
+            <button type="button" class="btn btn-default btn-block">
+                <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+            </button>
+    <% end %>
+
+
+
+</br>
+</br>
+</br>
+    <h4>New book</h4>
+
+    <%= form_for(@newbook) do |f| %>
+
+    <div class="toukou">
+    <p class="toukou-title">Title</p>
+    <div class="toukou-waku"><%= f.text_field :title %></div>
+    <p class="toukou-title">Opinion</p>
+    <div class="toukou-waku"><%= f.text_area :body %></div>
+    </br>
+
+    <%= f.submit 'create book' %>
+    </div>
+    <% end %>
+</div>
+<!-- ここまでUser info。containerとrowの/divとじを付け加えてねん -->
+
+
+
+
+<div class="col-sm-8">
+    <h2>Books</h2>
+<table class="table">
+
+    <thead>
+        <tr>
+            <td></td>
+            <td>Title</td>
+            <td>Opinion</td>
+        </tr>
+    </thead>
+
+
+
+ <% @books.each do |usershowbook| %>
+    <tr>
+        <td class="table-show"><%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size:'60x60' %></td>
+        <td class="table-title"><%= link_to usershowbook.title, book_path(usershowbook.id) %></td>
+        <td class="table-body"><%= usershowbook.body %></td>
+    </tr>
+    <% end %>
+</table>
+
+</div>
+
+
+
+</div>
+</div>

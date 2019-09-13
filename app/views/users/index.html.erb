@@ -1,0 +1,73 @@
+<!-- ここからUser info -->
+<div class="container"> <!-- 全体の囲い -->
+<div class="row">
+<div class="col-sm-4">
+
+	<h2>User info</h2>
+	<div class="example">
+        <%= attachment_image_tag @user, :profile_image, :fill, 80, 80, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size:'80x80' %></div>
+	<hr></hr>
+	<h3>name   <%= @user.name %></h3>
+    <hr></hr>
+	<h3>Introduction</h3>
+        <p><%= @user.introduction %></p><br>
+    <hr></hr>
+    <%= link_to edit_user_path(@user), class: "center-block" do %>
+            <button type="button" class="btn btn-default btn-block">
+                <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+            </button>
+    <% end %>
+
+
+
+</br>
+</br>
+</br>
+    <h4>New book</h4>
+    <%= form_for(@newbook) do |f| %>
+
+    <div class="toukou">
+    <p class="toukou-title">Title</p>
+    <div class="toukou-waku"><%= f.text_field :title %></div>
+    <p class="toukou-title">Opinion</p>
+    <div class="toukou-waku"><%= f.text_area :body %></div>
+    </br>
+
+    <%= f.submit 'create book' %>
+    </div>
+    <% end %>
+</div>
+
+<div class="col-sm-8">
+
+<h2>Users</h2>
+<table class="table">
+
+    <thead>
+        <tr>
+            <td>Image</td>
+            <td>name</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </thead>
+
+
+
+    <% @users.each do |user| %>
+    <tr>
+        <td class="table-show"><%= attachment_image_tag user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size:'60x60' %></td>
+        <td class="table-title"><%= user.name %></td>
+        <td></td>
+        <td><%= link_to "show", user_path(user.id) %></td>
+    </tr>
+    <% end %>
+</table>
+
+    </div>
+
+
+
+
+</div> <!-- rowの囲い -->
+</div> <!-- containerの囲い

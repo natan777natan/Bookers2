@@ -1,0 +1,21 @@
+
+<div class="hennsyu">
+	<h2>User info</h2>
+
+<%= form_for(@user) do |useredit| %>
+<p>Name</p><%= useredit.text_field :name, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"名前"%>
+<br>
+
+<p>Image</p>
+<label class="control-label sr-only" for="user_profile_image">ProfileImage</label>
+    <%= useredit.attachment_field :profile_image, placeholder: "プロフィール画像", class: "user-edit-form" %>
+
+<br>
+<p class="introduction">Introduction<%= useredit.text_area :introduction, autofocus: true, class:"form-control", id:"inputEmail",placeholder:"" %></p><br>
+
+<%= useredit.submit "Update User", class:"btn btn-default btn-block" %>
+
+
+
+<% end %>
+</div>
